@@ -1,8 +1,16 @@
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
-import { useState } from "react";
 import { navHeight } from "../../../constants";
+import { pdfjs } from "react-pdf";
+import { useState } from "react";
 import ViewerButtons from "./ViewerButtons";
 import felix from "../../../assets/images/felix-eye-roll.gif";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+
+/* 
+per https://github.com/wojtekmaj/react-pdf#standard-browserify-esbuild-and-others
+FYI: the file has been placed in the public directory already.
+*/
+pdfjs.GlobalWorkerOptions.workerSrc = "pdf.worker.min.js";
 
 interface Props {
     doc: Blob;
