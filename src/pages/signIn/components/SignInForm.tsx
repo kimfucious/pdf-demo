@@ -68,7 +68,7 @@ export default function SignInForm() {
                                     className="form-control"
                                     id="email"
                                     name="email"
-                                    placeholder="demo@publitas.com"
+                                    placeholder="demo@demo.com"
                                     type="email"
                                 />
                                 {errors.email && touched.email ? (
