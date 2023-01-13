@@ -8,6 +8,17 @@ CSS Framework is Bootstrap (v5.3)
 
 Redux is used to demonstrate state management (auth and protected routes)
 
+## Tools
+
+-   React
+-   React Redux
+-   React Router
+-   Bootstrap
+-   Formik
+-   React DropZone
+-   React-PDF
+-   Tabler Icons
+
 ## Notes
 
 ### Sign In
@@ -19,4 +30,4 @@ To run locally create a `.env.local` file in the root of the project with the fo
 -   REACT_APP_DEMO_PASSWORD=`<yourPassword>`
 -   REACT_APP_DEMO_USERNAME=`<yourUsername>`
 
-Restart the Dev Server for those variables to be made available to the app. 
+Restart the Dev Server for those variables to be made available to the app.
