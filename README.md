@@ -6,4 +6,4 @@ There is no HTML conversion or hot-spots happening yet, just PDF display with so
 
 CSS Framework is Bootstrap (v5.3)
 
-Redux is used to manage state (auth and protected routes)
+Redux is used to demonstrate state management (auth and protected routes)
