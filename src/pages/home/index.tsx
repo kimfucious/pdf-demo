@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../hooks/reduxHooks";
 import { AppRoute } from "../../types";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { useNavigate } from "react-router-dom";
 import felix from "../../assets/images/felix_show.gif";
 
 export default function Home() {
@@ -21,14 +21,15 @@ export default function Home() {
                 Simple uploading and displaying of a PDF file.
             </small>
             <small className="mt-2 text-center">
-                There is no HTML conversion or hot-spots happening yet, just
-                some basic navigation.
+                No HTML conversion or hot-spots happening yet, just some basic
+                navigation.
             </small>
             <small className="mt-2 text-center">
                 CSS Framework is Bootstrap (v5.3)
             </small>
             <small className="mt-2 text-center">
-                Redux is used to manage state (auth and protected routes)
+                Redux is currently only used for auth state management and
+                protected routes.
             </small>
             <small className="mt-2 text-center">
                 Repo is{" "}
@@ -36,9 +37,11 @@ export default function Home() {
                     href="https://github.com/kimfucious/pdf-demo"
                     target="_blank"
                     rel="noopener noreferrer"
+                    style={{textDecoration: "none"}}
                 >
                     here
                 </a>
+                .
             </small>
             {!username ? (
                 <button
