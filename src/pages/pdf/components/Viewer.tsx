@@ -60,7 +60,7 @@ export default function Viewer({ doc, setDoc }: Props) {
             )}
             <div
                 className="d-none d-md-flex flex-column align-items-center"
-                style={{ height: numPages ? "100%" : 0 }}
+                style={{ height: numPages && pageNumber ? "100%" : 0 }}
             >
                 <div className="d-flex align-items-center justify-content-between w-100 mb-3">
                     <button
