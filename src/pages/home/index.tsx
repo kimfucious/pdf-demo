@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { AppRoute } from "../../types";
 import felix from "../../assets/images/felix_show.gif";
@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <div
             className="container py-5 d-flex flex-column align-items-center justify-content-center"
-            style={{ height: "calc(100vh - 128px" }}
+            style={{ height: "calc(100vh - 80px" }}
         >
             <img
                 src={felix}
@@ -17,29 +17,39 @@ export default function Home() {
                 style={{ width: 300, height: "auto" }}
             />
             <h2 className="lead mt-3">Welcome to the show</h2>
-            <div className="mt-1 text-center">
-                This project demonstrates uploading and displaying a PDF file.
-            </div>
-            <div className="mt-2 text-center">
-                There is no HTML conversion or hot-spots happening yet, just PDF
-                display with some basic navigation.
-            </div>
-            <div className="mt-2 text-center">
+            <small className="mt-1 text-center">
+                Simple uploading and displaying of a PDF file.
+            </small>
+            <small className="mt-2 text-center">
+                There is no HTML conversion or hot-spots happening yet, just
+                some basic navigation.
+            </small>
+            <small className="mt-2 text-center">
                 CSS Framework is Bootstrap (v5.3)
-            </div>
-            <div className="mt-2 text-center">
+            </small>
+            <small className="mt-2 text-center">
                 Redux is used to manage state (auth and protected routes)
-            </div>
+            </small>
+            <small className="mt-2 text-center">
+                Repo is{" "}
+                <a
+                    href="https://github.com/kimfucious/pdf-demo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    here
+                </a>
+            </small>
             {!username ? (
                 <button
-                    className="btn btn-outline-primary mt-3"
+                    className="btn btn-sm btn-outline-primary mt-3"
                     onClick={() => navigate(AppRoute.AUTH)}
                 >
                     Sign In
                 </button>
             ) : (
                 <button
-                    className="btn btn-outline-primary mt-3"
+                    className="btn btn-sm btn-outline-primary mt-3"
                     onClick={() => navigate(AppRoute.PDF)}
                 >
                     Upload PDF
