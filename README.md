@@ -1,4 +1,4 @@
-# Publitas Demo Project
+# PDF Demo Project
 
 This project demonstrates uploading and displaying a PDF file.
 
