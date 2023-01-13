@@ -1,8 +1,7 @@
-import { ChevronLeft, ChevronRight } from "tabler-icons-react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
-import { PDFNavDirection } from "../../../types";
 import { useState } from "react";
 import felix from "../../../assets/images/felix-eye-roll.gif";
+import ViewerButtons from "./ViewerButtons";
 
 interface Props {
     doc: Blob;
@@ -18,16 +17,9 @@ export default function Viewer({ doc, setDoc }: Props) {
     function onDocumentLoadSuccess({ numPages }: FnProps) {
         setNumPages(numPages);
     }
-    function navigateToPage(direction: PDFNavDirection) {
-        if (direction === PDFNavDirection.BACK) {
-            setPageNumber(pageNumber - 1);
-        } else {
-            setPageNumber(pageNumber + 1);
-        }
-    }
     return (
         <>
-            {!numPages && (
+            {!numPages ? (
                 <div
                     className="d-flex flex-column align-items-center justify-content-center"
                     style={{ height: "calc(100vh - 128px" }}
@@ -36,6 +28,13 @@ export default function Viewer({ doc, setDoc }: Props) {
                         <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
+            ) : (
+                <ViewerButtons
+                    pageNumber={pageNumber}
+                    numPages={numPages}
+                    setDoc={setDoc}
+                    setPageNumber={setPageNumber}
+                />
             )}
             {numPages && (
                 <div
@@ -59,42 +58,9 @@ export default function Viewer({ doc, setDoc }: Props) {
                 </div>
             )}
             <div
-                className="d-none d-md-flex flex-column align-items-center"
-                style={{ height: numPages && pageNumber ? "100%" : 0 }}
+                className="d-none d-md-flex flex-column align-items-center w-100"
+                style={{ height: numPages || pageNumber ? "100%" : 0 }}
             >
-                <div className="d-flex align-items-center justify-content-between w-100 mb-3">
-                    <button
-                        className="btn btn-sm btn-outline-primary"
-                        onClick={() => setDoc(null)}
-                    >
-                        Reset
-                    </button>
-                    <small>
-                        Page {pageNumber} of {numPages}
-                    </small>
-                    <div className="d-flex align-items-center">
-                        <button
-                            className="btn btn-sm btn-outline-primary"
-                            onClick={() => navigateToPage(PDFNavDirection.BACK)}
-                            disabled={pageNumber === 1}
-                        >
-                            <i>
-                                <ChevronLeft />
-                            </i>
-                        </button>
-                        <button
-                            className="btn btn-sm btn-outline-primary ms-2"
-                            onClick={() =>
-                                navigateToPage(PDFNavDirection.FORWARD)
-                            }
-                            disabled={pageNumber === numPages}
-                        >
-                            <i>
-                                <ChevronRight />
-                            </i>
-                        </button>
-                    </div>
-                </div>
                 <div className="d-flex align-items-start">
                     <Document file={doc} onLoadSuccess={onDocumentLoadSuccess}>
                         <Page pageNumber={pageNumber} />
