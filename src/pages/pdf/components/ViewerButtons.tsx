@@ -31,7 +31,7 @@ export default function ViewerButtons({
                 className="btn btn-sm btn-outline-primary"
                 onClick={() => setDoc(null)}
             >
-                Reset
+                Upload New
             </button>
             <small>
                 Page {pageNumber} of {numPages}
