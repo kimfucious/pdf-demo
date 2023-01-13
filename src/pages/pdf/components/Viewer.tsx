@@ -78,7 +78,11 @@ export default function Viewer({ doc, setDoc }: Props) {
             >
                 <div className="d-flex align-items-start">
                     <Document file={doc} onLoadSuccess={onDocumentLoadSuccess}>
-                        <Page pageNumber={pageNumber} renderTextLayer={false} />
+                        <Page
+                            pageNumber={pageNumber}
+                            renderTextLayer={false}
+                            renderAnnotationLayer={false}
+                        />
                     </Document>
                 </div>
             </div>
