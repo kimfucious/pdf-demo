@@ -2,14 +2,16 @@ import { ChevronLeft, ChevronRight } from "tabler-icons-react";
 import { PDFNavDirection } from "../../../types";
 
 interface Props {
+    navMargin: string;
+    numPages: number | null;
+    pageNumber: number;
     setDoc: (f: Blob | null | undefined) => void;
     setPageNumber: (n: number) => void;
-    pageNumber: number;
-    numPages: number | null;
 }
 export default function ViewerButtons({
-    pageNumber,
+    navMargin,
     numPages,
+    pageNumber,
     setDoc,
     setPageNumber,
 }: Props) {
@@ -22,8 +24,8 @@ export default function ViewerButtons({
     }
     return (
         <div
-            className="d-flex align-items-center justify-content-between w-100 mb-3"
-            style={{ maxWidth: 596 }}
+            className="d-none d-md-flex align-items-center justify-content-between w-100 mb-3"
+            style={{ maxWidth: 596, marginTop: navMargin }}
         >
             <button
                 className="btn btn-sm btn-outline-primary"
@@ -32,7 +34,7 @@ export default function ViewerButtons({
                 Reset
             </button>
             <small>
-                Page {pageNumber ?? "loading"} of {numPages ?? "loading"}
+                Page {pageNumber} of {numPages}
             </small>
             <div className="d-flex align-items-center">
                 <button

@@ -11,7 +11,7 @@ export default function NavBar() {
     const isDark = theme === "dark";
     const dispatch = useAppDispatch();
     return (
-        <nav className="navbar bg-body-tertiary">
+        <nav className="navbar fixed-top bg-body-tertiary">
             <div className="container">
                 <NavLink to={AppRoute.ROOT} className="navbar-brand">
                    PDF Demo 

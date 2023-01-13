@@ -1,4 +1,5 @@
 import { AppRoute } from "../../types";
+import { navHeight } from "../../constants";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import felix from "../../assets/images/felix_show.gif";
@@ -9,7 +10,7 @@ export default function Home() {
     return (
         <div
             className="container py-5 d-flex flex-column align-items-center justify-content-center"
-            style={{ height: "calc(100vh - 80px" }}
+            style={{ marginTop: navHeight }}
         >
             <img
                 src={felix}
@@ -37,7 +38,7 @@ export default function Home() {
                     href="https://github.com/kimfucious/pdf-demo"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{textDecoration: "none"}}
+                    style={{ textDecoration: "none" }}
                 >
                     here
                 </a>

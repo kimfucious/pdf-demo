@@ -1,7 +1,8 @@
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
 import { useState } from "react";
-import felix from "../../../assets/images/felix-eye-roll.gif";
+import { navHeight } from "../../../constants";
 import ViewerButtons from "./ViewerButtons";
+import felix from "../../../assets/images/felix-eye-roll.gif";
 
 interface Props {
     doc: Blob;
@@ -22,7 +23,8 @@ export default function Viewer({ doc, setDoc }: Props) {
             {!numPages ? (
                 <div
                     className="d-flex flex-column align-items-center justify-content-center"
-                    style={{ height: "calc(100vh - 128px" }}
+                    // style={{ height: `calc(100vh-(128px+${navHeight})` }}
+                    style={{ height: "100vh", marginTop: navHeight }}
                 >
                     <div className="spinner-border text-primary" role="status">
                         <span className="visually-hidden">Loading...</span>
@@ -30,8 +32,9 @@ export default function Viewer({ doc, setDoc }: Props) {
                 </div>
             ) : (
                 <ViewerButtons
-                    pageNumber={pageNumber}
+                    navMargin={navHeight}
                     numPages={numPages}
+                    pageNumber={pageNumber}
                     setDoc={setDoc}
                     setPageNumber={setPageNumber}
                 />
@@ -39,7 +42,10 @@ export default function Viewer({ doc, setDoc }: Props) {
             {numPages && (
                 <div
                     className="d-flex d-md-none flex-column align-items-center justify-content-center"
-                    style={{ height: "calc(100vh - 128px" }}
+                    style={{
+                        height: "calc(100vh - 128px",
+                        marginTop: navHeight,
+                    }}
                 >
                     <img
                         src={felix}
@@ -52,6 +58,7 @@ export default function Viewer({ doc, setDoc }: Props) {
                     <button
                         className="btn btn-link"
                         onClick={() => setDoc(null)}
+                        style={{ textDecoration: "none" }}
                     >
                         reset
                     </button>

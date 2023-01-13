@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
+import { navHeight } from "../../../constants";
 
 interface Props {
     setDoc: (b: Blob) => void;
@@ -9,21 +10,22 @@ export default function Dropzone({ setDoc, setError }: Props) {
     const onDrop = useCallback(
         (acceptedFiles: Blob[], fileRejections: FileRejection[]) => {
             setError("");
-            if (fileRejections && fileRejections.length) {
-                const errors = fileRejections[0].errors;
-                const codes = errors.map((item) => item.code);
-                if (codes.includes("file-invalid-type")) {
-                    setError("Only PDF files are permitted");
-                } else {
-                    setError("Something's not right");
-                }
-                return;
-            }
+            // Not doing this for now
+            // if (fileRejections && fileRejections.length) {
+            //     const errors = fileRejections[0].errors;
+            //     const codes = errors.map((item) => item.code);
+            //     if (codes.includes("file-invalid-type")) {
+            //         setError("Only PDF files are permitted");
+            //     } else {
+            //         setError("Something's not right");
+            //     }
+            //     return;
+            // }
 
             if (acceptedFiles && acceptedFiles.length) {
                 setDoc(acceptedFiles[0]);
             } else {
-                setError("Something's not right");
+                // setError("Something's not right");
             }
         },
         [setDoc, setError]
@@ -58,7 +60,7 @@ export default function Dropzone({ setDoc, setError }: Props) {
     return (
         <div
             className="d-flex flex-column align-items-center justify-content-center"
-            style={{ height: "calc(100vh - 256px" }}
+            style={{ height: "calc(100vh - 128px", marginTop: navHeight }}
         >
             <h1 className="fw-light mb-3">Upload PDF</h1>
             <div {...getRootProps()} style={{ minWidth: 300 }}>
