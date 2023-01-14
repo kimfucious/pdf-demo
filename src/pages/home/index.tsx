@@ -1,16 +1,18 @@
 import { AppRoute } from "../../types";
-import { navHeight } from "../../constants";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
 import felix from "../../assets/images/felix_show.gif";
 
-export default function Home() {
+interface Props {
+    navbarOffset: number;
+}
+export default function Home({ navbarOffset }: Props) {
     const navigate = useNavigate();
     const { username } = useAppSelector((state) => state.auth);
     return (
         <div
             className="container py-5 d-flex flex-column align-items-center justify-content-center"
-            style={{ marginTop: navHeight }}
+            style={{ marginTop: navbarOffset }}
         >
             <img
                 src={felix}
