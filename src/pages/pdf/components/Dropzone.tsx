@@ -60,10 +60,13 @@ export default function Dropzone({ setDoc, setError }: Props) {
     return (
         <div
             className="d-flex flex-column align-items-center justify-content-center"
-            style={{ height: "calc(100vh - 192px", marginTop: navHeight }}
+            style={{ height: "calc(100vh - 192px" }}
         >
             <h1 className="fw-light mb-3">Upload PDF</h1>
-            <div {...getRootProps()} style={{cursor: "pointer", minWidth: 300 }}>
+            <div
+                {...getRootProps()}
+                style={{ cursor: "pointer", minWidth: 300 }}
+            >
                 <input {...getInputProps()} />
                 <div
                     className={`${borderClasses} p-5 d-flex flex-column align-items-center`}
