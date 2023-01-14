@@ -1,20 +1,50 @@
 import { ChevronLeft, ChevronRight } from "tabler-icons-react";
-import { PDFNavDirection } from "../../../types";
+import { ElName, PDFNavDirection } from "../../../types"; // enum
+import type { ElHeight } from "../../../types";
+import { useEffect, useRef } from "react";
+import useSize from "@react-hook/size";
 
 interface Props {
+    heights: ElHeight[];
     navMargin: string;
     numPages: number | null;
     pageNumber: number;
     setDoc: (f: Blob | null | undefined) => void;
+    setHeights: (a: ElHeight[]) => void;
     setPageNumber: (n: number) => void;
 }
-export default function ViewerButtons({
+
+export default function ViewerControls({
+    heights,
     navMargin,
     numPages,
     pageNumber,
     setDoc,
+    setHeights,
     setPageNumber,
 }: Props) {
+    const target = useRef(null);
+    const [, height] = useSize(target);
+
+    useEffect(() => {
+        const newHeights = [...heights];
+        const idx = newHeights.findIndex(
+            (item) => item.name === ElName.VIEWER_CONTROLS
+        );
+        if (idx !== -1) {
+            const navBarHeight = newHeights[idx].height;
+            if (navBarHeight !== height) {
+                newHeights[idx].height = height;
+                setHeights(newHeights);
+            }
+        } else {
+            setHeights([
+                ...newHeights,
+                { name: ElName.VIEWER_CONTROLS, height: height },
+            ]);
+        }
+    }, [height, heights, setHeights]);
+
     function navigateToPage(direction: PDFNavDirection) {
         if (direction === PDFNavDirection.BACK) {
             setPageNumber(pageNumber - 1);
@@ -25,7 +55,8 @@ export default function ViewerButtons({
     return (
         <div
             className="d-none d-md-flex align-items-center justify-content-between w-100 mb-3"
-            style={{ maxWidth: 596, marginTop: navMargin }}
+            ref={target}
+            style={{ maxWidth: 596 }}
         >
             <button
                 className="btn btn-sm btn-outline-primary"
