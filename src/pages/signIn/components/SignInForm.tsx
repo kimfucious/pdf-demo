@@ -15,13 +15,17 @@ export default function SignInForm() {
     const dispatch = useAppDispatch();
     const [formError, setFormError] = useState("");
     const navigate = useNavigate();
+    const isDev = process.env.NODE_ENV === "development";
+    const demoEmail = "felix@demo.cat";
+    const demoUsername = process.env.REACT_APP_DEMO_USERNAME;
+    const demoPassword = process.env.REACT_APP_DEMO_PASSWORD;
     return (
         <div className="w-100 pt-3" style={{ maxWidth: 400 }}>
             <Formik
                 initialValues={{
-                    username: "",
-                    email: "",
-                    password: "",
+                    username: isDev && demoUsername ? demoUsername : "",
+                    email: isDev ? demoEmail : "",
+                    password: isDev && demoPassword ? demoPassword : "",
                 }}
                 validationSchema={signInSchema}
                 onSubmit={async (
