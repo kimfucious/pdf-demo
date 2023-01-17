@@ -6,6 +6,8 @@ import useSize from "@react-hook/size";
 
 interface Props {
     heights: ElHeight[];
+    navigateToPage: (d: PDFNavDirection) => void;
+    mobileMaxWidth?: number;
     navMargin: string;
     numPages: number | null;
     pageNumber: number;
@@ -16,6 +18,8 @@ interface Props {
 
 export default function ViewerControls({
     heights,
+    mobileMaxWidth,
+    navigateToPage,
     navMargin,
     numPages,
     pageNumber,
@@ -45,18 +49,11 @@ export default function ViewerControls({
         }
     }, [height, heights, setHeights]);
 
-    function navigateToPage(direction: PDFNavDirection) {
-        if (direction === PDFNavDirection.BACK) {
-            setPageNumber(pageNumber - 1);
-        } else {
-            setPageNumber(pageNumber + 1);
-        }
-    }
     return (
         <div
-            className="d-none d-md-flex align-items-center justify-content-between w-100 mb-3"
+            className="d-none d-sm-flex align-items-center justify-content-between w-100 my-3"
             ref={target}
-            style={{ maxWidth: 596 }}
+            style={{ maxWidth: mobileMaxWidth }}
         >
             <button
                 className="btn btn-sm btn-outline-primary"
