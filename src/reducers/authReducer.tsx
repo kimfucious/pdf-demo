@@ -1,10 +1,6 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { ActionType, AuthUser } from "../types";
 
-// interface Auth {
-//   authUser: Record<string, any>
-// }
-
 const initialState = {
     username: "",
     email: "",
