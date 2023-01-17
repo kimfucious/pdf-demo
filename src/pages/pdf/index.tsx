@@ -1,16 +1,30 @@
 import { useState } from "react";
 import Dropzone from "./components/Dropzone";
-import Viewer from "./components/Viewer";
+import Viewer from "./components/Viewer/";
+import type { ElHeight } from "../../types";
 
-export default function Pdf() {
+interface Props {
+    heights: ElHeight[];
+    navbarOffset: number;
+    totalOffset: number;
+    setHeights: (a: ElHeight[]) => void;
+}
+export default function Pdf({ heights, navbarOffset, totalOffset, setHeights }: Props) {
     const [doc, setDoc] = useState<Blob | null | undefined>();
     const [error, setError] = useState("");
 
     return (
-        <div className="container py-5 d-flex flex-column align-items-center">
-            {/* <h1 className="display-4">PDF</h1> */}
+        <div className="d-flex flex-column align-items-center"
+        style={{marginTop: navbarOffset}}
+        >
             {doc ? (
-                <Viewer doc={doc} setDoc={setDoc} />
+                <Viewer
+                    doc={doc}
+                    heights={heights}
+                    totalOffset={totalOffset}
+                    setDoc={setDoc}
+                    setHeights={setHeights}
+                />
             ) : (
                 <Dropzone setDoc={setDoc} setError={setError} />
             )}
