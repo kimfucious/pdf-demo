@@ -2,7 +2,7 @@ import { object, string } from "yup";
 
 export const signInSchema = object({
     username: string()
-        .max(15, "Maximum length is 2 characters")
+        .max(15, "Maximum length is 15 characters")
         .min(2, "Minimum length is 2 characters")
         .required("Username is required"),
     email: string()
