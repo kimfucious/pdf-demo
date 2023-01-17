@@ -4,7 +4,6 @@ import { signOut } from "../../actions/authActions";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useEffect, useRef } from "react";
 import DarkModeToggleButton from "./components/DarkModeToggleButton";
-import useColorTheme from "../../hooks/useColorTheme";
 import useSize from "@react-hook/size";
 
 interface Props {
@@ -15,8 +14,6 @@ interface Props {
 export default function NavBar({ heights, setHeights }: Props) {
     const target = useRef(null);
     const { username } = useAppSelector((state) => state.auth);
-    const { theme } = useColorTheme();
-    const isDark = theme === "dark";
     const dispatch = useAppDispatch();
     const [, height] = useSize(target);
 
@@ -38,10 +35,7 @@ export default function NavBar({ heights, setHeights }: Props) {
     }, [height, heights, setHeights]);
 
     return (
-        <nav
-            ref={target}
-            className="navbar fixed-top bg-body-tertiary"
-        >
+        <nav ref={target} className="navbar fixed-top bg-body-tertiary">
             <div className="container">
                 <NavLink to={AppRoute.ROOT} className="navbar-brand">
                     PDF Demo
@@ -49,9 +43,7 @@ export default function NavBar({ heights, setHeights }: Props) {
                 <div>
                     {username && (
                         <button
-                            className={`btn btn-sm btn-${
-                                isDark ? "outline-primary" : "primary"
-                            } `}
+                            className={"btn btn-sm btn-outline-primary"}
                             onClick={() => dispatch(signOut())}
                         >
                             Sign Out
